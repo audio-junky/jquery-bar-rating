@@ -243,6 +243,7 @@
                 if (self.options.showSelectedRating) {
                     self.$elem.parent().find('.br-current-rating').text(text);
                 }
+
             };
 
             // return rounded fraction of a value (14.4 -> 40, 0.99 -> 90)
@@ -334,6 +335,14 @@
                         event
                     );
 
+                    // onSelect callback
+                    options.onValueChange.call(
+                        self,
+                        ratingValue(),
+                        ratingText(),
+                        event
+                    );
+
                     return false;
                 });
             };
@@ -349,6 +358,14 @@
                         .addClass('br-active');
 
                     showSelectedRating($a.attr('data-rating-text'));
+
+                    // onSelect callback
+                    options.onValueChange.call(
+                        self,
+                        ratingValue(),
+                        ratingText(),
+                        event
+                    );
                 });
             };
 
@@ -579,6 +596,8 @@
         triggerChange:true, // trigger change event when ratings are set or reset
         onSelect:function (value, text, event) {
         }, // callback fired when a rating is selected
+        onValueChange:function (value, text, event) {
+        }, // callback fired when a rating is selected OR hovered
         onClear:function (value, text) {
         }, // callback fired when a rating is cleared
         onDestroy:function (value, text) {
