@@ -350,7 +350,8 @@
             // handle mouseenter events
             var attachMouseEnterHandler = function($elements) {
                 $elements.on('mouseenter.barrating', function() {
-                    var $a = $(this);
+                    var $a = $(this),
+                        options = getData('userOptions');
 
                     resetStyle();
 
