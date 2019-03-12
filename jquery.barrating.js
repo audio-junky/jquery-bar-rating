@@ -351,20 +351,21 @@
             var attachMouseEnterHandler = function($elements) {
                 $elements.on('mouseenter.barrating', function() {
                     var $a = $(this),
-                        options = getData('userOptions');
+                        options = getData('userOptions')
+                        currentSelected = $a.attr('data-rating-text');
 
                     resetStyle();
 
                     $a.addClass('br-active')[nextAllorPreviousAll()]()
                         .addClass('br-active');
 
-                    showSelectedRating($a.attr('data-rating-text'));
+                    showSelectedRating(currentSelected);
 
                     // onSelect callback
                     options.onValueChange.call(
                         self,
                         ratingValue(),
-                        ratingText(),
+                        currentSelected,
                         event
                     );
                 });
